@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sakthi Ram | Freelance Video Editor & Graphic Designer</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0f1f3d;
+    --accent: #2563eb;
+    --accent-light: #dbeafe;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --bg: #f8fafc;
+    --white: #ffffff;
+    --radius: 12px;
+  }
+  body { font-family: 'Inter', system-ui, sans-serif; color: var(--text); background: var(--white); line-height: 1.6; }
+  a { text-decoration: none; color: inherit; }
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%; height: 64px;
+  }
+  .logo { font-size: 20px; font-weight: 700; color: var(--navy); letter-spacing: -0.5px; }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { font-size: 14px; font-weight: 500; color: var(--muted); transition: color .2s; }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta { background: var(--accent); color: #fff; padding: 8px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; }
+
+  .hero { background: linear-gradient(135deg, #0f1f3d 0%, #1e3a6e 100%); color: #fff; padding: 100px 5% 80px; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+  .hero-left { flex: 1; min-width: 280px; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 5px 14px; border-radius: 999px; font-size: 13px; color: #93c5fd; font-weight: 500; margin-bottom: 20px; }
+  .hero h1 { font-size: clamp(30px, 5vw, 50px); font-weight: 800; line-height: 1.15; letter-spacing: -1px; margin-bottom: 16px; }
+  .hero h1 span { color: #60a5fa; }
+  .hero p { font-size: 16px; color: #cbd5e1; max-width: 480px; margin-bottom: 32px; line-height: 1.7; }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary { background: var(--accent); color: #fff; padding: 13px 28px; border-radius: 9px; font-weight: 600; font-size: 15px; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-outline { background: transparent; color: #fff; padding: 13px 28px; border: 1.5px solid rgba(255,255,255,0.35); border-radius: 9px; font-weight: 600; font-size: 15px; }
+  .hero-right { display: flex; gap: 16px; flex-wrap: wrap; justify-content: flex-end; }
+  .stat-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 20px 28px; text-align: center; min-width: 110px; }
+  .stat-card .num { font-size: 30px; font-weight: 800; color: #60a5fa; }
+  .stat-card .label { font-size: 12px; color: #94a3b8; margin-top: 2px; }
+
+  section { padding: 80px 5%; }
+  .section-label { font-size: 13px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .section-title { font-size: clamp(24px, 3.5vw, 36px); font-weight: 800; color: var(--navy); letter-spacing: -0.5px; margin-bottom: 12px; }
+  .section-sub { color: var(--muted); font-size: 16px; max-width: 560px; }
+
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 40px; }
+  .about-img-placeholder { background: var(--bg); border-radius: 18px; border: 2px dashed var(--border); height: 340px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--muted); gap: 10px; }
+  .about-img-placeholder svg { width: 48px; height: 48px; opacity: .4; }
+  .about-img-placeholder p { font-size: 14px; }
+  .about-text p { color: var(--muted); font-size: 15px; margin-bottom: 18px; line-height: 1.8; }
+
+  .tools-wrap { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+  .tool-badge { display: flex; align-items: center; gap: 8px; background: var(--white); border: 1px solid var(--border); padding: 8px 16px; border-radius: 10px; font-size: 13px; font-weight: 600; color: var(--navy); box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+  .tool-badge span { font-size: 18px; }
+
+  .services-bg { background: var(--bg); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px; margin-top: 48px; }
+  .service-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 22px; transition: box-shadow .2s, transform .15s; }
+  .service-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.08); transform: translateY(-3px); }
+  .svc-icon { width: 50px; height: 50px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 24px; }
+  .service-card h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .service-card p { font-size: 13px; color: var(--muted); line-height: 1.65; }
+  .service-card ul { list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
+  .service-card ul li { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+  .service-card ul li::before { content: "✓"; color: var(--accent); font-weight: 700; }
+
+  .packages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 48px; }
+  .pkg-card { background: var(--white); border: 1.5px solid var(--border); border-radius: 16px; padding: 32px 24px; display: flex; flex-direction: column; transition: box-shadow .2s, transform .15s; position: relative; }
+  .pkg-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,.1); transform: translateY(-4px); }
+  .pkg-card.popular { border-color: var(--accent); border-width: 2px; }
+  .popular-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 999px; letter-spacing: .5px; white-space: nowrap; }
+  .pkg-name { font-size: 13px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .pkg-price { font-size: 36px; font-weight: 800; color: var(--navy); margin-bottom: 4px; line-height: 1; }
+  .pkg-price sup { font-size: 18px; font-weight: 600; vertical-align: top; margin-top: 6px; }
+  .pkg-desc { font-size: 13px; color: var(--muted); margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .pkg-features { list-style: none; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .pkg-features li { font-size: 13px; color: var(--text); display: flex; align-items: flex-start; gap: 9px; line-height: 1.4; }
+  .pkg-features li .chk { color: var(--accent); font-weight: 700; flex-shrink: 0; }
+  .pkg-features li .cross { color: #cbd5e1; flex-shrink: 0; }
+  .pkg-btn { margin-top: 24px; display: block; text-align: center; padding: 12px; border-radius: 9px; font-size: 14px; font-weight: 600; border: 1.5px solid var(--accent); color: var(--accent); transition: background .2s, color .2s; }
+  .pkg-btn:hover { background: var(--accent); color: #fff; }
+  .pkg-card.popular .pkg-btn { background: var(--accent); color: #fff; }
+
+  .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 48px; }
+  .project-card { border-radius: 14px; overflow: hidden; border: 1px solid var(--border); background: var(--white); transition: box-shadow .2s, transform .15s; }
+  .project-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,.1); transform: translateY(-4px); }
+  .project-thumb { height: 160px; display: flex; align-items: center; justify-content: center; font-size: 40px; }
+  .project-body { padding: 18px; }
+  .project-body h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
+  .project-body p { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+  .project-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .project-tag { background: var(--bg); color: var(--muted); padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 500; border: 1px solid var(--border); }
+
+  .contact-bg { background: var(--navy); color: #fff; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; margin-top: 48px; }
+  .contact-info h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+  .contact-info p { color: #94a3b8; font-size: 15px; line-height: 1.7; margin-bottom: 24px; }
+  .contact-detail { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .contact-icon { width: 38px; height: 38px; background: rgba(255,255,255,0.08); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 18px; }
+  .contact-detail-text .ctitle { font-size: 11px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; }
+  .contact-detail-text .cval { font-size: 15px; color: #cbd5e1; }
+  .contact-form { display: flex; flex-direction: column; gap: 14px; }
+  .form-group { display: flex; flex-direction: column; gap: 5px; }
+  .form-group label { font-size: 12px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: .5px; }
+  .form-group input, .form-group textarea, .form-group select { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 11px 14px; color: #cbd5e1; font-size: 14px; outline: none; transition: border-color .2s; }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: #475569; }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: #60a5fa; }
+  .form-group textarea { resize: vertical; min-height: 110px; }
+  .form-group select option { background: #0f1f3d; }
+  .btn-send { background: var(--accent); color: #fff; border: none; padding: 13px 28px; border-radius: 9px; font-size: 15px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+
+  footer { background: #0a1628; color: #475569; text-align: center; padding: 24px 5%; font-size: 13px; border-top: 1px solid #1e293b; }
+  footer span { color: #60a5fa; }
+
+  @media (max-width: 680px) {
+    .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .hero { padding: 60px 5% 50px; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Sakthi<span>Ram</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#packages">Packages</a>
+    <a href="#portfolio">Work</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta">Hire Me</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="5" fill="#4ade80"/></svg>
+      Available for new projects
+    </div>
+    <h1>Hi, I'm <span>Sakthi Ram</span> 👋</h1>
+    <p>Freelance video editor & graphic designer crafting stunning edits, eye-catching posters, and scroll-stopping social content for brands and creators.</p>
+    <div class="hero-btns">
+      <a href="#packages" class="btn-primary">View Packages &#8594;</a>
+      <a href="#contact" class="btn-outline">Let's Talk</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-card"><div class="num">50+</div><div class="label">Projects Done</div></div>
+    <div class="stat-card"><div class="num">5&#9733;</div><div class="label">Avg Rating</div></div>
+    <div class="stat-card"><div class="num">4yr</div><div class="label">Experience</div></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img-placeholder">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      <p>Your photo goes here</p>
+    </div>
+    <div class="about-text">
+      <div class="section-label">About Me</div>
+      <div class="section-title">I'm Sakthi Ram</div>
+      <p>I'm a freelance video editor and graphic designer based in Tiruchirappalli, Tamil Nadu. I help brands, YouTubers, and businesses tell their story through powerful visuals — from cinematic video edits to scroll-stopping posters.</p>
+      <p>I work with industry-leading tools to deliver professional quality, fast turnaround, and results that speak for themselves.</p>
+      <div style="margin-top:20px;">
+        <p style="font-size:13px; font-weight:700; color:#0f1f3d; margin-bottom:12px; text-transform:uppercase; letter-spacing:.5px;">Tools I Use</p>
+        <div class="tools-wrap">
+          <div class="tool-badge"><span>🎬</span> CapCut</div>
+          <div class="tool-badge"><span>🎨</span> DaVinci Resolve</div>
+          <div class="tool-badge"><span>&#10024;</span> Adobe Express Premium</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="services-bg">
+  <div class="section-label">What I Offer</div>
+  <div class="section-title">Services</div>
+  <div class="section-sub">Creative services built for content creators, brands, and businesses of all sizes.</div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="svc-icon" style="background:#ffe4e6;">🎬</div>
+      <h3>Video Editing</h3>
+      <p>Engaging edits for YouTube, Reels, Shorts & more with smooth transitions and color grading.</p>
+      <ul>
+        <li>YouTube & vlog edits</li>
+        <li>Reels & Shorts</li>
+        <li>Color grading</li>
+        <li>Subtitles & captions</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon" style="background:#fef3c7;">🖼️</div>
+      <h3>Poster Making</h3>
+      <p>Bold, professional posters and flyers for events, promotions, and social media.</p>
+      <ul>
+        <li>Event & concert posters</li>
+        <li>Promotional flyers</li>
+        <li>Social media banners</li>
+        <li>Movie-style posters</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon" style="background:#ede9fe;">&#10024;</div>
+      <h3>Motion Graphics</h3>
+      <p>Animated intros, outros, and text effects that give your brand a polished edge.</p>
+      <ul>
+        <li>Logo animations</li>
+        <li>Intro & outro videos</li>
+        <li>Lower thirds</li>
+        <li>Kinetic text effects</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon" style="background:#dcfce7;">📱</div>
+      <h3>Social Media Content</h3>
+      <p>Complete content packages designed for Instagram, YouTube, and TikTok growth.</p>
+      <ul>
+        <li>Instagram posts & stories</li>
+        <li>YouTube thumbnails</li>
+        <li>TikTok / Reels edits</li>
+        <li>Content packages</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="packages">
+  <div class="section-label">Pricing</div>
+  <div class="section-title">Packages</div>
+  <div class="section-sub">Simple, transparent pricing — pick what suits your project best.</div>
+  <div class="packages-grid">
+    <div class="pkg-card">
+      <div class="pkg-name">Starter</div>
+      <div class="pkg-price"><sup>&#8377;</sup>499</div>
+      <div class="pkg-desc">Perfect for individuals and small creators.</div>
+      <ul class="pkg-features">
+        <li><span class="chk">&#10003;</span> 1 video edit (up to 3 min)</li>
+        <li><span class="chk">&#10003;</span> 2 poster / graphic designs</li>
+        <li><span class="chk">&#10003;</span> Basic color grading</li>
+        <li><span class="chk">&#10003;</span> Subtitles / captions</li>
+        <li><span class="chk">&#10003;</span> 2-day delivery</li>
+        <li><span class="chk">&#10003;</span> 1 revision</li>
+        <li><span class="cross">&#10007;</span> Motion graphics</li>
+        <li><span class="cross">&#10007;</span> Priority support</li>
+      </ul>
+      <a href="#contact" class="pkg-btn">Get Started</a>
+    </div>
+    <div class="pkg-card popular">
+      <div class="popular-badge">&#11088; Most Popular</div>
+      <div class="pkg-name">Pro</div>
+      <div class="pkg-price"><sup>&#8377;</sup>999</div>
+      <div class="pkg-desc">Best for growing creators and small brands.</div>
+      <ul class="pkg-features">
+        <li><span class="chk">&#10003;</span> 3 video edits (up to 10 min)</li>
+        <li><span class="chk">&#10003;</span> 5 poster / graphic designs</li>
+        <li><span class="chk">&#10003;</span> Advanced color grading</li>
+        <li><span class="chk">&#10003;</span> Subtitles & motion text</li>
+        <li><span class="chk">&#10003;</span> Intro / outro animation</li>
+        <li><span class="chk">&#10003;</span> 3-day delivery</li>
+        <li><span class="chk">&#10003;</span> 3 revisions</li>
+        <li><span class="chk">&#10003;</span> Priority support</li>
+      </ul>
+      <a href="#contact" class="pkg-btn">Get Started</a>
+    </div>
+    <div class="pkg-card">
+      <div class="pkg-name">Premium</div>
+      <div class="pkg-price"><sup>&#8377;</sup>1,999</div>
+      <div class="pkg-desc">For brands and businesses wanting full content.</div>
+      <ul class="pkg-features">
+        <li><span class="chk">&#10003;</span> Unlimited video edits</li>
+        <li><span class="chk">&#10003;</span> Unlimited poster designs</li>
+        <li><span class="chk">&#10003;</span> Cinematic color grading</li>
+        <li><span class="chk">&#10003;</span> Full motion graphics pack</li>
+        <li><span class="chk">&#10003;</span> Social media content kit</li>
+        <li><span class="chk">&#10003;</span> 5-day delivery</li>
+        <li><span class="chk">&#10003;</span> Unlimited revisions</li>
+        <li><span class="chk">&#10003;</span> 24/7 priority support</li>
+      </ul>
+      <a href="#contact" class="pkg-btn">Get Started</a>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio">
+  <div class="section-label">Recent Work</div>
+  <div class="section-title">Portfolio</div>
+  <div class="section-sub">A selection of creative projects delivered for clients and creators.</div>
+  <div class="portfolio-grid">
+    <div class="project-card">
+      <div class="project-thumb" style="background:#fff1f2;">🎬</div>
+      <div class="project-body">
+        <h3>YouTube Channel Edit</h3>
+        <p>Full video editing package — cuts, color grade, captions and animated thumbnail.</p>
+        <div class="project-tags">
+          <span class="project-tag">DaVinci Resolve</span>
+          <span class="project-tag">CapCut</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-thumb" style="background:#fefce8;">🎨</div>
+      <div class="project-body">
+        <h3>Event Poster Series</h3>
+        <p>10-poster series for a music festival with bold typography and print-ready files.</p>
+        <div class="project-tags">
+          <span class="project-tag">Adobe Express</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-thumb" style="background:#f5f3ff;">📱</div>
+      <div class="project-body">
+        <h3>Brand Reels Package</h3>
+        <p>30 Instagram reels edited for a fashion brand's product launch campaign.</p>
+        <div class="project-tags">
+          <span class="project-tag">CapCut</span>
+          <span class="project-tag">Adobe Express</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-bg">
+  <div class="section-label" style="color:#60a5fa;">Get In Touch</div>
+  <div class="section-title" style="color:#fff;">Let's Work Together</div>
+  <div class="section-sub" style="color:#94a3b8;">Have a project in mind? Reach out and Sakthi Ram will get back to you within 24 hours.</div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>Contact Sakthi Ram</h3>
+      <p>Open to freelance projects, content packages, and long-term collaborations. Let's create something amazing!</p>
+      <div class="contact-detail">
+        <div class="contact-icon">📧</div>
+        <div class="contact-detail-text">
+          <div class="ctitle">Email</div>
+          <div class="cval">sakthiram576@gmail.com</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">📞</div>
+        <div class="contact-detail-text">
+          <div class="ctitle">Phone / WhatsApp</div>
+          <div class="cval">+91 77089 28372</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">📍</div>
+        <div class="contact-detail-text">
+          <div class="ctitle">Location</div>
+          <div class="cval">Tiruchirappalli, Tamil Nadu</div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="John Doe" />
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="john@example.com" />
+      </div>
+      <div class="form-group">
+        <label>Select Package</label>
+        <select>
+          <option value="">Choose a package...</option>
+          <option value="starter">Starter — ₹499</option>
+          <option value="pro">Pro — ₹999</option>
+          <option value="premium">Premium — ₹1,999</option>
+          <option value="custom">Custom / Just a question</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Project Details</label>
+        <textarea placeholder="Tell me about your project..."></textarea>
+      </div>
+      <button class="btn-send">
+        Send Message &#10148;
+      </button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 <span>Sakthi Ram</span> &middot; All rights reserved &middot; Made with &#10084;&#65039; in Tiruchirappalli
+</footer>
+
+</body>
+</html>
